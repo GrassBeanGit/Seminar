@@ -1,0 +1,75 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+\newpage
+# BÀI TẬP 1
+## Câu 1. 
+**Phân phối Beta**
+\vspace{0.5cm}  
+Hàm mật độ của phân phối Beta được cho bởi:
+$$f(y;\alpha,\beta)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta - 1}, y \in [0,1],\alpha > 0,\beta > 0$$
+
+Lấy logarit của hàm mật độ:
+
+$$lnf(y;\alpha,\beta)=ln{\Gamma(\alpha+\beta)} - ln{\Gamma(\alpha)} - ln{\Gamma(\beta)} + (\alpha-1)lny + (\beta - 1)ln(1-y)$$
+
+Họ phân phối mũ phân phối có dạng:
+
+$$f(y; \theta) = \exp\left(\frac{y \theta - b(\theta)}{\phi} + c(\phi; y)\right)$$
+
+Biểu diễn lại hàm mật độ Beta:
+$$f(y; \alpha, \beta) = \exp\left(\frac{(\alpha - 1)\ln y + (\beta - 1)\ln(1 - y) - b(\alpha, \beta)}{1} + c(y)\right)$$
+
+Vậy phân phối Beta thuộc họ phân phối mũ phân tán với các thành phần như sau:    
+
+1. Tham số tự nhiên ($\theta$):    
+$$\theta = \left(\alpha -1, \beta - 1\right)$$
+
+2. Hàm $b(\theta)$:    
+$$b(\theta) = ln{\Gamma(\alpha+\beta)} - ln{\Gamma(\alpha)} - ln{\Gamma(\beta)}$$
+
+3. Hàm. $c(\phi; y)$:    
+$$c(\phi; y) = lny + ln(1-y)$$
+
+4. Tham số phân tán $\phi$:
+$$\phi = 1$$
+\newpage
+
+## Câu 2. 
+**Phân phối hình học**
+\vspace{0.5cm}  
+Hàm mật độ của phân phối hình học được cho bởi:    
+$$f(y;p) = p(1-p)^{y-1},  y = 1,2,3, ..., 0<p<1$$   
+Lấy logarit của hàm mật độ:    
+$$lnf(y;p) = lnp + (y-1)ln(1-p)$$
+Họ phân phối mũ phân tán có dạng tổng quát:
+$$lnf(y;\theta) = \frac{y\theta - b\theta}{\phi}+c(\theta;y)$$
+Đặt $\theta = ln(1-p)$, từ đó $p = 1 - e^{\theta}$
+
+Vậy phân phối hình học thuộc họ phân phối mũ phân tán với các thành phần như sau:   
+
+1. Tham số tự nhiên ($\theta$):    
+$$\theta = ln(1-p)$$
+
+2. Hàm $b(\theta)$:    
+$$b(\theta) = -ln{(1 - e^{\theta})}$$
+3. Hàm. $c(\phi; y)$:    
+$$c(\phi; y) = 0$$
+
+4. Tham số phân tán $\phi$:
+$$\phi = 1$$
+\vspace{1cm}
+
+## Câu 3. 
+**Phân phối Cauchy:**
+\vspace{0.5cm}  
+Hàm mật độ của phân phối Cauchy được cho bởi:   
+$$f(y; c, s) = \frac{1}{\pi s \left( 1 + \left( \frac{y - c}{s} \right)^2 \right)}, \quad -\infty < y < \infty, \, s > 0$$
+Lấy logarit của hàm mật độ:    
+$$\ln f(y; c, s) = -\ln(\pi s) - \ln\left( 1 + \left( \frac{y - c}{s} \right)^2 \right)$$
+
+Phân phối Cauchy không thuộc họ phân phối mũ phân tán vì không thể biểu diễn theo dạng tuyến tính của tham số tự nhiên $\theta$ và $y$. Hàm logarit không phù hợp với dạng chuẩn mực của họ này.
+

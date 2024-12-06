@@ -1,0 +1,36 @@
+
+---
+title: "BÀI TẬP - NHÓM D"
+site: bookdown::bookdown_site
+output:
+  pdf_document: 
+    latex_engine: xelatex
+    toc: true
+    toc_depth: 4
+    highlight: zenburn
+geometry: margin=2cm
+---
+
+
+```{r setup_group, include = FALSE, echo = FALSE, eval = TRUE}
+library(here)
+```
+
+
+```{r child = file.path(here(), "rmd/BaiTap", "PhanCong.rmd")}
+```
+
+```{r child = file.path(here(), "rmd/BaiTap", "BaiTap1.rmd")}
+```
+
+```{r child = file.path(here(), "rmd/BaiTap", "BaiTap5.rmd")}
+```
+
+```{r child = file.path(here(), "rmd/BaiTap", "BaiTap8.rmd")}
+```
+
+```{r child = file.path(here(), "rmd/BaiTap", "BaiTap12.rmd")}
+```
+
+```{r child = file.path(here(), "rmd/BaiTap", "ThamKhao.rmd")}
+```

@@ -1,0 +1,72 @@
+## Kiểm tra Y~B(m,p) có thuộc họ phân phối mũ phân tán   
+
+\vspace{1cm}
+
+Ta có hàm phân phối nhị thức:  
+                                                            
+$\hspace{2cm} f_Y(y_i) = C_m^{y_i}p^{y_i}(1-p)^{m-y_i}\\\\$    
+
+Lấy log 2 vế, ta được:
+
+$\hspace{2cm} log[f_Y(y_i)] = log(C_m^{y_i}) + y_ilog(p) + (m-y_i)log(1-p)\\\\$    
+
+Đưa về dạmg lũy thừa, ta được:  
+
+$\hspace{2cm} f_Y(y_i) = exp\{log(C_m^{y_i}) + y_ilog(p) + (m-y_i)log(1-p)\}\\$    
+
+$\hspace{2cm} f_Y(y_i) = exp\{log(C_m^{y_i}) + y_ilog(p) + mlog(1-p) - y_ilog(1-p)\}\\$    
+
+$\hspace{2cm} f_Y(y_i) = exp\{log(C_m^{y_i}) + y_i[log(p) - log(1-p)]+ mlog(1-p) \}\\$    
+
+$\hspace{2cm} f_Y(y_i) = exp\{y_ilog(\frac{p}{1-p})+ mlog(1-p) + log(C_m^{y_i}) \}$   **\hfill (\*)** 
+    
+\vspace{1cm}
+Đặt: 
+
+$\hspace{2cm}\theta_i = log(\frac{p}{1-p})$ **\hfill (1)** 
+
+$\hspace{3cm}\Leftrightarrow e^{\theta_i} = \frac{p}{1-p} \\$
+
+$\hspace{3cm}\Leftrightarrow p = (1-p)e^{\theta_i} \\$
+
+$\hspace{3cm}\Leftrightarrow p(1+e^{\theta_i}) = e^{\theta_i} \\$
+
+$\hspace{3cm}\Leftrightarrow p = \frac{e^{\theta_i}}{1+e^{\theta_i}}$ **\hfill (1.1)**
+  
+\vspace{1cm}
+Với:   
+
+$\hspace{2cm} p = \frac{e^{\theta_i}}{1+e^{\theta_i}}\\$  
+
+$\hspace{3cm} \Rightarrow {1-p} = 1-\frac{e^{\theta_i}}{1+e^{\theta_i}}\\$  
+
+$\hspace{3cm} \Leftrightarrow {1-p} = \frac{1+e^{\theta_i}-e^{\theta_i}}{1+e^{\theta_i}}\\$   
+
+$\hspace{3cm} \Leftrightarrow {1-p} = (1+e^{\theta_i})^{-1}\\\\$   
+
+  
+$\hspace{2cm} {1-p} = (1+e^{\theta_i})^{-1}$   **\hfill (2.1)**
+
+$\hspace{3cm}\Rightarrow mlog(1-p) = mlog(1+e^{\theta_i})^{-1}\\$   
+
+$\hspace{3cm}\Leftrightarrow mlog(1-p) = -mlog(1+e^{\theta_i})$ **\hfill (2)**   
+      
+\vspace{1cm}
+Thế **(1), (2)** vào **(\*)**. Ta được:
+
+$\hspace{2cm} f_Y(y_i|\theta_i) = exp\{y_i\theta_i - mlog(1+e^{\theta_i}) + log(C_{y_i}^m) \}$    
+
+$\hspace{3cm} \Leftrightarrow f_Y(y_i|\theta_i,\phi) = exp\{\frac{y_i\theta_i - b(\theta_i)}{a(\phi)} + c(y_i,\phi) \}$    
+
+$\hspace{1cm}\text{Với}$:  
+
+$\hspace{2cm} \theta_i = log(\frac{p}{1-p})$    
+
+$\hspace{2cm} b(\theta_i) = mlog(1+e^{\theta_i})$    
+
+$\hspace{2cm} a(\phi) = 1$    
+
+$\hspace{2cm} c(y_i,\phi) = log(C_{y_i}^m)$    
+
+Vậy Y~B(m,p) thuộc họ phân phối mũ phân tán   
+

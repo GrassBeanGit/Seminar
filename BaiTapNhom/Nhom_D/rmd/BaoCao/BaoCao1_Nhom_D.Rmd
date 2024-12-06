@@ -1,0 +1,30 @@
+
+---
+title: "BÁO CÁO 1 - NHÓM D"
+site: bookdown::bookdown_site
+output:
+  pdf_document: 
+    latex_engine: xelatex
+    toc: true
+    toc_depth: 4
+    highlight: zenburn
+includes:
+  in_header: preamble.tex
+geometry: margin=2cm
+---
+
+
+```{r setup_group, include = FALSE, echo = FALSE, eval = TRUE}
+library(here)
+```
+
+\newpage
+# BÁO CÁO 1
+```{r child = file.path(here(), "rmd/BaoCao", "BaoCao1_Bai1.Rmd")}
+```
+
+```{r child = file.path(here(), "rmd/BaoCao", "BaoCao1_Bai2.Rmd")}
+```
+
+```{r child = file.path(here(), "rmd/BaoCao", "BaoCao_ThamKhao.Rmd")}
+```

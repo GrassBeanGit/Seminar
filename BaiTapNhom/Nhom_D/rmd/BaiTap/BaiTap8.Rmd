@@ -1,0 +1,89 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+\newpage
+# BÀI TẬP 8
+
+\vspace{1cm}
+## Câu a 
+**Chứng minh rằng hàm log-likelihood là bất biến với phép biến đổi $\psi = 1/\lambda$**
+
+\vspace{0.5cm}
+Hàm mật độ:
+
+$\hspace{2cm} f(y, \lambda) = \lambda exp(-\lambda y)$
+
+Ta có công thức hàm hợp lý cực đại:
+
+$\hspace{2cm} L(\lambda) = \prod_{i=1}^{n} {\lambda e^{-\lambda y_{i}}}$
+
+Log-likelihood function:
+
+$\hspace{2cm} l(\lambda) = log(L(\lambda)) = log(\prod_{i=1}^{n} {\lambda e^{-\lambda y_{i}}})$
+
+$\hspace{2cm} \Leftrightarrow l(\lambda) = \sum_{i=1}^{n} {log(\lambda e^{-\lambda y_{i}})}$
+
+$\hspace{2cm} \Leftrightarrow l(\lambda) = \sum_{i=1}^{n} ({log(\lambda) -\lambda y_{i}})$
+
+$\hspace{2cm} \Leftrightarrow l(\lambda) = n log(\lambda) -\lambda \sum_{i=1}^{n} y_{i}$
+
+Gọi $Z = g(Y)$ là hàm đơn điệu, ta có:
+
+$\hspace{2cm} f(z, \theta) = f(y, \theta) \lvert \frac{dy}{dz} \rvert$
+
+$\hspace{2cm} L(Z, \theta) = \prod_{i=1}^{n} f(y_i, \theta) \lvert \frac{dy}{dz} \rvert$
+
+Suy ra:
+
+$\hspace{2cm} log(L(Z, \theta)) = \sum_{i=1}^{n} log(f(y, \theta)) + n \lvert \frac{dy}{dz}\rvert = log(L(Y, \theta)) + n \lvert \frac{dy}{dz}\rvert$
+
+Ta thấy hàm log-likelihood của Z và Y chỉ sai khác nhau bằng 1 hằng số $n \lvert \frac{dy}{dz}\rvert$ vì vậy hàm log-likelihood là bất biến, k phụ thuộc vào $\theta$
+
+Suy ra, hàm log-likelihood cũng là bất biến với $\psi = \frac{1}{\lambda}$
+
+\vspace{1cm}
+## Câu b
+**Uớc lượng hợp lý cực đại cho tham số $\lambda$**
+
+\vspace{0.5cm}
+Đạo hàm bậc 1 của likelihood-function:
+
+$\hspace{2cm} \frac{dl}{d\lambda} = \frac{n}{\lambda} - \sum_{i=1}^{n} y_{i}$
+
+$\hspace{2cm} \frac{dl}{d\lambda} = 0 \Leftrightarrow \frac{n}{\lambda} = \sum_{i=1}^{n} y_{i}$
+
+$\hspace{2cm} \Leftrightarrow \hat{\lambda} = \frac{n}{\sum_{i=1}^n y_{i}}$
+
+Đạo hàm bậc 2 của likelihood-function:
+
+$\hspace{2cm} \frac{d^{2}l}{d^2\lambda} = \frac{-n}{\lambda^2} < 0, \forall \lambda > 0$
+
+Suy ra $\Leftrightarrow \hat{\lambda} = \frac{n}{\sum_{i=1}^n y_{i}}$ là ước lượng hợp lý cực đại cho tham số $\lambda$
+
+\vspace{1cm}
+## Câu c
+**Tìm thông tin quan sát**
+
+\vspace{0.5cm}
+$\hspace{2cm} J(\lambda) = \frac{d^{2}(l)}{d^2(\lambda)} = \frac{-n}{\lambda^2}$
+
+\vspace{1cm}
+## Câu d
+**Tìm thông tin Fisher**
+
+\vspace{0.5cm}
+$\hspace{2cm} I(\lambda) = - E(\frac{d^{2}(l)}{d^2(\lambda)}) = -E(\frac{-n}{\lambda^2}) = \frac{n}{\lambda^2}$
+
+\vspace{1cm}
+## Câu e
+**Sai số chuẩn của ước lượng hợp lý cực đại**
+
+\vspace{0.5cm}
+Theo tính chất tiệm cận của MLE, ta có:
+
+$\hspace{2cm} \hat{\lambda} \xrightarrow {\text{d}} N(\lambda, \frac{\lambda^2}{n})$
+
+Suy ra sai số chuẩn của ước lượng là $\frac{\lambda}{\sqrt{n}}$

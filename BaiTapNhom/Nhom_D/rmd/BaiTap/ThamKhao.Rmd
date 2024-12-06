@@ -1,0 +1,9 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+\newpage
+# THAM KHẢO
+- - https://math.stackexchange.com/questions/3341439/show-that-a-weibull-distribution-belongs-to-an-exponential-family

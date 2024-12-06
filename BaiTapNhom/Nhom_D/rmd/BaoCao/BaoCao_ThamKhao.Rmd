@@ -1,0 +1,10 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+\newpage
+# THAM KHẢO
+- https://www.youtube.com/watch?v=7mNrsFr7P_A&si=3CSLdQa-Sg4aeKwj
+- https://www.youtube.com/watch?v=MfynxwNqgfU

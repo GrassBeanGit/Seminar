@@ -1,0 +1,30 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+\newpage
+# PHÂN CÔNG VIỆC
+
+\vspace{1cm}
+\textbf{NGUYỄN BÍCH TRÂM - 23C23010}
+
+- Bài tập 1
+
+\vspace{0.5cm}
+\textbf{ĐỖ THỊ THANH THẢO - 23C23009}
+
+- Bài tập 5
+
+\vspace{0.5cm}
+\textbf{TRẦN THỊ THUẬN - 23C23002}
+
+- Bài tập 8
+
+\vspace{0.5cm}
+\textbf{NGUYỄN KIM ANH - 23C23004}   
+
+- Bài tập 12  
+
+

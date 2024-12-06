@@ -1,0 +1,80 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+\newpage
+# BÀI TẬP 12
+
+**Giả sử rằng ta có dãy biến ngẫu nhiên \( Y_1, \dots, Y_n \), độc lập và \( Y_i \sim \text{B}(m, p_i) \) (phân phối nhị thức), với \( m \) cố định và \( p_i \) được mô hình bởi:**  
+**\[p_i = \dfrac{\exp(\beta_0 + \beta_1 X_i)}{1 + \exp(\beta_0 + \beta_1 X_i)}\]**  
+**trong đó \( \beta_0, \beta_1 \in \mathbb{R} \) là các tham số chưa biết, và \( X_i \) là biến ngẫu nhiên ghép cặp với \( Y_i \), tức là cặp \( (X_i, Y_i) \).**
+
+\begin{enumerate}\bfseries
+    \item[(a)] Tìm hàm mật độ xác suất đồng thời của một mẫu ngẫu nhiên \((x_1, y_1), \dots, (x_n, y_n)\) tương ứng của các biến ngẫu nhiên \( (X_1, Y_1), \dots, (X_n, Y_n) \).
+    \item[(b)] Xác định hàm hợp lý (likelihood) và hàm log-likelihood cho \( (\beta_0, \beta_1) \).
+    \item[(c)] Tìm ma trận thông tin quan sát.
+    \item[(d)] Tìm ma trận thông tin Fisher.
+\end{enumerate}
+
+\vspace{1cm} 
+ 
+\textbf{Bài làm.}
+
+## Câu a
+**Tìm hàm mật độ xác suất đồng thời của một mẫu ngẫu nhiên \((x_1, y_1), \dots, (x_n, y_n)\) tương ứng của các biến ngẫu nhiên \( (X_1, Y_1), \dots, (X_n, Y_n) \)**.
+
+$$P(Y_i = y_i \mid X_i = x_i, \beta_0, \beta_1) = \binom{m}{y_i} p_i^{y_i} (1 - p_i)^{m - y_i}, \text{với } p_i = \dfrac{\exp(\beta_0 + \beta_1 X_i)}{1 + \exp(\beta_0 + \beta_1 X_i)} $$
+
+Hàm mật độ xác suất đồng thời
+$$P\left((Y_1, X_1) = (y_1, x_1), \ldots, (Y_n, X_n) = (y_n, x_n) \mid \beta_0, \beta_1\right) = \prod_{i=1}^n \binom{m}{y_i} p_i^{y_i} (1 - p_i)^{m - y_i}.$$
+
+\vspace{1cm}
+
+## Câu b
+**Xác định hàm hợp lý (likelihood) và hàm log-likelihood cho \( (\beta_0, \beta_1) \).**
+
+$$L(\beta_0, \beta_1) = \prod_{i=1}^n \binom{m}{y_i} \left( \dfrac{\exp(\beta_0 + \beta_1 X_i)}{1 + \exp(\beta_0 + \beta_1 X_i)} \right)^{y_i} \left( 1 - \dfrac{\exp(\beta_0 + \beta_1 X_i)}{1 + \exp(\beta_0 + \beta_1 X_i)} \right)^{m - y_i}.$$
+
+Hàm log-likelihood \( \ell(\beta_0, \beta_1) \) là:
+$$\ell(\beta_0, \beta_1) = \log L(\beta_0, \beta_1) = \sum_{i=1}^n \left[ \log \binom{m}{y_i} + y_i \log p_i + (m - y_i) \log (1 - p_i) \right].$$
+Thay \( p_i \) vào:
+$$\ell(\beta_0, \beta_1) = \sum_{i=1}^n \left[ \log \binom{m}{y_i} + y_i (\beta_0 + \beta_1 X_i) - m \log \left( 1 + \exp(\beta_0 + \beta_1 X_i) \right) \right].$$
+
+\newpage
+
+## Câu c
+**Tìm ma trận thông tin quan sát.**  
+
+$\hspace{2cm} \vspace{0.5cm} \dfrac{\partial \ell}{\partial \beta_0} = \sum_{i=1}^n \left[ y_i - m \dfrac{\exp(\beta_0 + \beta_1 X_i)}{1 + \exp(\beta_0 + \beta_1 X_i)} \right].$
+
+$\hspace{2cm} \vspace{0.5cm} \dfrac{\partial \ell}{\partial \beta_1} = \sum_{i=1}^n \left[ y_i X_i - m X_i \dfrac{\exp(\beta_0 + \beta_1 X_i)}{1 + \exp(\beta_0 + \beta_1 X_i)} \right].$
+
+$\hspace{2cm} \vspace{0.5cm} \dfrac{\partial^2 \ell}{\partial \beta_0^2} = -\sum_{i=1}^n m \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left( 1 + \exp(\beta_0 + \beta_1 X_i) \right)^2}.$
+
+$\hspace{2cm} \vspace{0.5cm} \dfrac{\partial^2 \ell}{\partial \beta_1^2} = -\sum_{i=1}^n m X_i^2 \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left( 1 + \exp(\beta_0 + \beta_1 X_i) \right)^2}.$
+
+$\hspace{2cm} \vspace{0.5cm} \dfrac{\partial^2 \ell}{\partial \beta_0 \partial \beta_1} = -\sum_{i=1}^n m X_i \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left( 1 + \exp(\beta_0 + \beta_1 X_i) \right)^2}.$
+
+Ma trận thông tin quan sát:   
+
+$\hspace{2cm} \vspace{0.5cm} \mathcal{I}_{\text{obs}}(\beta_0, \beta_1) = -\begin{pmatrix}
+\dfrac{\partial^2 \ell}{\partial \beta_0^2} & \dfrac{\partial^2 \ell}{\partial \beta_0 \partial \beta_1}\\\\
+\dfrac{\partial^2 \ell}{\partial \beta_1 \partial \beta_0} & \dfrac{\partial^2 \ell}{\partial \beta_1^2}
+\end{pmatrix}$
+
+$\hspace{2cm} \vspace{0.5cm} \mathcal{I}_{\text{obs}}(\beta_0, \beta_1) = \begin{pmatrix}
+\sum\limits_{i=1}^n m \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left( 1 + \exp(\beta_0 + \beta_1 X_i) \right)^2} & \sum\limits_{i=1}^n m X_i \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left( 1 + \exp(\beta_0 + \beta_1 X_i) \right)^2}\\\\
+\sum\limits_{i=1}^n m X_i \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left( 1 + \exp(\beta_0 + \beta_1 X_i) \right)^2} & \sum\limits_{i=1}^n m X_i^2 \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left( 1 + \exp(\beta_0 + \beta_1 X_i) \right)^2}
+\end{pmatrix}$  
+
+\vspace{1cm}
+
+## Câu d
+**Ma trận thông tin Fisher**   
+
+$\hspace{2cm} \vspace{0.5cm} \mathcal{I}(\beta_0, \beta_1) = \begin{pmatrix}
+\sum\limits_{i=1}^n m \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left(1 + \exp(\beta_0 + \beta_1 X_i)\right)^2} & \sum\limits_{i=1}^n m X_i \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left(1 + \exp(\beta_0 + \beta_1 X_i)\right)^2}\\\\
+\sum\limits_{i=1}^n m X_i \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left(1 + \exp(\beta_0 + \beta_1 X_i)\right)^2} & \sum\limits_{i=1}^n m X_i^2 \dfrac{\exp(\beta_0 + \beta_1 X_i)}{\left(1 + \exp(\beta_0 + \beta_1 X_i)\right)^2}
+\end{pmatrix}$
