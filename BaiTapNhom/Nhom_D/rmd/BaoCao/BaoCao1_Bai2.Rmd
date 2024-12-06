@@ -4,46 +4,46 @@
 \vspace{1cm}
 Ta có: 
                                                             
-$\hspace{2cm} f_Y(y_i|\theta_i,\phi) = exp\{y_i\theta_i - mlog(1+e^{\theta_i}) + log(C_{y_i}^m) \}$    
+$\hspace{2cm} f_Y(y_i|\theta_i,\phi) = exp\{y_i\theta_i - m_ilog(1+e^{\theta_i}) + log(C_{y_i}^{m_i}) \}$    
 
 $\hspace{1cm}\text{Với}$:  
 
-$\hspace{2cm}\theta_i = log(\frac{p}{1-p})$
+$\hspace{2cm}\theta_i = log(\frac{p_i}{1-p_i})$
 
-$\hspace{2cm} b(\theta_i) = mlog(1+e^{\theta_i})$    
+$\hspace{2cm} b(\theta_i) = m_ilog(1+e^{\theta_i})$    
 
-$\hspace{2cm} a(\theta_i) = 1$    
+$\hspace{2cm} a(\phi) = 1$    
 
-$\hspace{2cm} c(y_i,\phi) = log(C_{y_i}^m)$    
+$\hspace{2cm} c(y_i,\phi) = log(C_{y_i}^{m_i})$    
 
 \vspace{0.5 cm}
 Tính kỳ vọng của Y:
 
 $\hspace{2cm} E[y_i] = \frac{\partial}{\partial\theta_i}b(\theta_i)$    
 
-$\hspace{3cm} \Leftrightarrow  E[y_i] = \frac{\partial}{\partial\theta_i}mlog(1+e^{\theta_i})$    
+$\hspace{3cm} \Leftrightarrow  E[y_i] = \frac{\partial}{\partial\theta_i}m_ilog(1+e^{\theta_i})$    
 
-$\hspace{3cm} \Leftrightarrow  E[y_i] = m\frac{e^{\theta_i}}{1+e^{\theta_i}}$    
+$\hspace{3cm} \Leftrightarrow  E[y_i] = m_i\frac{e^{\theta_i}}{1+e^{\theta_i}}$    
 
-$\hspace{3cm} \Leftrightarrow  E[y_i] = mp$ (Do **1.1**) **\hfill (3)**
+$\hspace{3cm} \Leftrightarrow  E[y_i] = m_ip_i$ (Do **1.1**) **\hfill (3)**
 
 \vspace{0.5 cm}
 Ta có:
 
 $\hspace{2cm} \mu_i = E[y_i]$
 
-$\hspace{3cm} \Leftrightarrow \mu_i = mp$ (Do **3**)
+$\hspace{3cm} \Leftrightarrow \mu_i = m_ip_i$ (Do **3**)
 
-$\hspace{3cm} \Leftrightarrow p= \frac{\mu_i}{m}$ 
+$\hspace{3cm} \Leftrightarrow p_i= \frac{\mu_i}{m_i}$ 
 
 \vspace{0.5 cm}
 Mà:
 
-$\hspace{2cm} \theta_i = log(\frac{p}{1-p})$ 
+$\hspace{2cm} \theta_i = log(\frac{p_i}{1-p_i})$ 
 
-$\hspace{3cm} \Leftrightarrow \theta_i = log(\frac{\frac{\mu_i}{m}}{1-\frac{\mu_i}{m}})$ 
+$\hspace{3cm} \Leftrightarrow \theta_i = log(\frac{\frac{\mu_i}{m_i}}{1-\frac{\mu_i}{m_i}})$ 
 
-Vậy hàm liên kết chính tắc là $\theta_i = log(\frac{\frac{\mu_i}{m}}{1-\frac{\mu_i}{m}})$ 
+Vậy hàm liên kết chính tắc là $\theta_i = log(\frac{\frac{\mu_i}{m_i}}{1-\frac{\mu_i}{m_i}})$ 
 
-Vậy hàm liên kết là $\eta_i = log(\frac{p}{1-p})$ 
+Vậy hàm liên kết là $\eta_i = log(\frac{\mu_i}{1-\mu_i}) = log(\frac{m_i p_i}{1-m_i p_i})$ 
 
