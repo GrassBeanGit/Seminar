@@ -1,0 +1,57 @@
+
+---
+title: "BÁO CÁO 1 - NHÓM D"
+site: bookdown::bookdown_site
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+    toc_depth: 4
+    highlight: zenburn
+  word_document:
+    toc: true
+    toc_depth: '4'
+includes:
+  in_header: preamble.tex
+geometry: margin=2cm
+---
+\vspace{1cm}
+
+Thành viên:    
+1. Đỗ Thị Thanh Thảo (23C23009)    
+2. Nguyễn Kim Anh (23C23004)     
+3. Nguyễn Bích Trâm (23C23010)    
+4. Trần Thị Thuận (23C23002)   
+
+```{r setup_group, include = FALSE, echo = FALSE, eval = TRUE}
+library(here)
+library(knitr)
+options(tinytex.verbose = TRUE)
+```
+
+# I. Giới thiệu:
+## 1. Bài toán:
+Bộ dữ liệu **"Churn_Modelling"** chứa thông tin về khách hàng và được sử dụng để phân tích hành vi khách hàng và tìm hiểu lý do khiến khách hàng rời bỏ dịch vụ.   
+
+### Cấu trúc dữ liệu:
+**RowNumber:** Chỉ mục của từng dòng dữ liệu (không ảnh hưởng đến phân tích).    
+**CustomerId:** Mã định danh của khách hàng.    
+**Surname:** Họ của khách hàng.    
+**CreditScore:** Điểm tín dụng, đánh giá khả năng tài chính của khách hàng.    
+**Geography:** Quốc gia nơi khách hàng sinh sống.    
+**Gender:** Giới tính của khách hàng.    
+**Age:** Tuổi của khách hàng.    
+**Tenure:** Thời gian khách hàng đã sử dụng dịch vụ (tính bằng năm).     
+**Balance:** Số dư tài khoản ngân hàng.    
+**NumOfProducts:** Số sản phẩm mà khách hàng sử dụng.    
+**HasCrCard:** Khách hàng có thẻ tín dụng hay không (1 = Có, 0 = Không).     
+**IsActiveMember:** Khách hàng có phải là thành viên hoạt động không (1 = Có, 0 = Không).     
+**EstimatedSalary:** Mức lương ước tính của khách hàng.     
+**Exited:** Biến mục tiêu (Target Variable):    
+&nbsp;&nbsp;&nbsp;&nbsp; 1: Khách hàng đã rời bỏ dịch vụ (churn).   
+&nbsp;&nbsp;&nbsp;&nbsp; 0: Khách hàng vẫn tiếp tục sử dụng dịch vụ.    
+
+\newpage
+```{r child = file.path(here(), "rmd/BaoCao2", "BaoCao2_Bai1.Rmd")}
+```
+
