@@ -1,0 +1,129 @@
+\newpage
+# 2. Cơ sở lí thuyết:
+Mô hình hồi quy đối với biến binomial có dạng:     
+\begin{center}
+$log(\dfrac{\mu_i}{1-\mu_i}) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \epsilon_i$    
+\end{center}
+Binomial là một họ phân phối mũ phân tán có dạng    
+\begin{center}
+$f_Z\left(z_i\right)=\exp \left\{z_i \theta_i-\log \left(1+e^{\theta_i}\right)+\log \left(C_{y_i}^{z_i m_i}\right)\right\}$
+\end{center}
+&nbsp;&nbsp; Với:     
+
+$\hspace{4cm} \theta_i=\log \left(\dfrac{p_i}{1-p_i}\right)$   
+
+$\hspace{4cm}b\left(\theta_i\right)=\log \left(1+e^{\theta_i}\right)$   
+
+$\hspace{4cm}a(\phi)=1$     
+
+$\hspace{4cm}c\left(y_i, \phi\right)=\log \left(C_{y_i}^{z_i m_i}\right)$   
+
+<!-- ## 1.1. Hàm log-likelihood: -->
+<!-- Ta có hàm mật độ xác suất:    -->
+
+<!-- \begin{center} -->
+<!-- $f_Y(y_i) = exp\{log(C_{m_i}^{y_i}) + y_ilog\frac{p_i}{1-p_i} + m_ilog(1-p_i)\}$ -->
+<!-- \end{center} -->
+
+<!-- \begin{center} -->
+<!-- $f_Y(y_i| \beta, a(\phi)) = exp\{log(C_{m_i}^{y_i}) + y_ilog\frac{p_i}{1-p_i} + m_ilog(1-p_i)\}$ -->
+<!-- \end{center} -->
+
+<!-- ## 1.2. Hàm hợp lí: -->
+
+<!-- ## 1.3. Hàm score: -->
+
+<!-- ## 1.4. Ma trận thông tin Fisher: -->
+
+<!-- ## 1.5. Tiêu chuẩn hội tụ: -->
+
+<!-- ## 1.5. Ước lượng hệ số cho mô hình: -->
+
+<!-- ## 1.6. Xây dựng khoảng tin cậy cho hệ số của mô hình: -->
+
+## Ma trận hiệp phương sai của $\hat{\beta}$
+
+Ma trận hiệp phương sai của  $\hat{\beta}$ có công thức tổng quát $\widehat{\operatorname{Var}}(\widehat{\boldsymbol{\beta}})=a\left(\phi_0\right)\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1}$.   
+
+Với $a(\phi)=1$, ma trận hiệp phương sai của  $\hat{\beta}$ của biến nhị thức là:    
+
+$\widehat{\operatorname{Var}}(\widehat{\boldsymbol{\beta}})=\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1}=\left\{\boldsymbol{X}^{\mathrm{T}} \operatorname{Diag}\left[n_i \hat{\mu}_i\left(1-\hat{\mu}_i\right)\right] \boldsymbol{X}\right\}^{-1}$    
+
+## Khoảng tin cậy cho hệ số cho mô hình:
+
+Như ta đã được học ở phần trước, khoảng tin cậy của các hệ số mô hình $\beta_j$ được xây dựng dựa trên tính chất tiệm cận phân phối chuẩn của ước lượng $\widehat{\beta}_j$, tức là:    
+
+\begin{center}
+$\dfrac{\widehat{\beta}_j-\beta_{0 j}}{\sqrt{\phi_0 v_j}} \xrightarrow{d} \mathcal{N}(0,1)$,   
+\end{center}
+
+Tương đương với:    
+\begin{center}
+$\dfrac{\widehat{\beta}_j-\beta_{0 j}}{\sqrt{v_j}} \xrightarrow{d} \mathcal{N}(0,1)$,
+\end{center}
+
+(Do với phân phối nhị thức thì $\phi_0$ =1) trong đó, $v_j$ là phương sai tiệm cận của $\widehat{\beta}_j$, và được xác định bởi thành phần đường chéo thứ $j$ của ma trận $\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1}$, với
+\begin{center}
+$\mathbf{W}(\widehat{\boldsymbol{\beta}})=\left(\begin{array}{cccc}
+W_1(\widehat{\boldsymbol{\beta}}) & 0 & \ldots & 0 \\
+0 & W_2(\widehat{\boldsymbol{\beta}}) & \ldots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \ldots & W_n(\widehat{\boldsymbol{\beta}})
+\end{array}\right)
+=\left\{\boldsymbol{X}^{\mathrm{T}} \operatorname{Diag}\left[n_i \hat{\mu}_i\left(1-\hat{\mu}_i\right)\right] \boldsymbol{X}\right\}^{-1}$
+\end{center}
+
+thành phần $W_i(\widehat{\boldsymbol{\beta}})=\dfrac{1}{V_i\left(\widehat{\mu}_i\right)\left(g_i^{\prime}\left(\widehat{\mu}_i\right)\right)^2}= n_i \hat{\mu}_i\left(1-\hat{\mu}_i\right)$. Khoảng tin cậy $100 \times \alpha \%$ của $\beta_j$ là   
+\begin{center}
+$\left(\widehat{\beta}_j-z_{(1+\alpha) / 2} \sqrt{v_j}, \widehat{\beta}_j+z_{(1+\alpha) / 2} \sqrt{v_j}\right)$
+\end{center}
+
+với $z_{1-\alpha / 2}$ là phân vị thứ $1-\alpha / 2$ của phân phối chuẩn $\mathcal{N}(0,1)$ và $v_j$ là thành phần đường chéo thứ $j$ của ma trận $\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1}$.    
+
+## Tính chất tiệm cận của tiên đoán $\eta$
+
+Xét tổ hợp tuyến tính
+$\eta=\beta_0+\sum_{j=1}^p \beta_j x_j=\boldsymbol{x} \boldsymbol{\beta}$   
+
+Ước lượng của nó là $\widehat{\eta}=\widehat{\beta}_0+\sum_{j=1}^p \widehat{\beta}_j x_j=\boldsymbol{x} \widehat{\boldsymbol{\beta}}$    
+
+Ta có   
+\begin{center}
+$\dfrac{\widehat{\eta}-\eta_0}{\sqrt{\operatorname{Var}(\widehat{\eta})}} \xrightarrow{d} \mathcal{N}(0,1)$    
+\end{center}
+## Ước lượng ma trận phương sai của $\hat{\eta_i}$
+
+$\widehat{\operatorname{Var}}(\widehat{\eta})=a\left(\phi_0\right) \boldsymbol{x}\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1} \boldsymbol{x}^{\top}=\boldsymbol{x}\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1} \boldsymbol{x}^{\top}=\boldsymbol{x}\left\{\boldsymbol{X}^{\mathrm{T}} \operatorname{Diag}\left[n_i \hat{\pi}_i\left(1-\hat{\pi}_i\right)\right] \boldsymbol{X}\right\}^{-1}\boldsymbol{x}^{\top}$    
+
+Với khoảng tin cậy cho $\hat{\eta_i}$ là     
+\begin{center}
+    $\left(\widehat{\eta}-z_{1-\alpha / 2} \sqrt{\widehat{\operatorname{Var}}(\widehat{\eta})}, \widehat{\eta}+z_{1-\alpha / 2} \sqrt{\widehat{\operatorname{Var}}(\widehat{\eta})}\right)$
+\end{center}
+
+## Khoảng tin cậy cho tiên đoán trung bình
+
+Hàm liên kết
+
+$\eta=\log \left(\dfrac{\mu}{1-\mu}\right)$
+
+Ta có:   
+
+$\eta=\log \left(\dfrac{\mu}{1-\mu}\right)
+\Rightarrow \dfrac{\mu}{1-\mu} = \exp \eta\\
+\Rightarrow \mu = \left(1- \mu\right) \exp \eta\\
+\Rightarrow \mu = \exp \eta- \mu \exp \eta\\
+\Rightarrow \mu\left(1+\exp \eta\right) = \exp \eta\\
+\Rightarrow \mu =\dfrac{ \exp \eta}{1+\exp \eta}$
+
+Vậy hàm $g = \dfrac{ \exp \eta}{1+\exp \eta}$    
+
+$\Rightarrow$ khoảng tin cậy $100 \times(1-\alpha) \%$ cho $\mu$ được xây dựng bởi áp dụng $g^{-1}(\cdot)$ lên khoảng tin cậy của $\eta$:    
+
+$\left(g^{-1}\left(\widehat{\eta}_L\right), g^{-1}\left(\widehat{\eta}_U\right)\right)$    
+
+Vậy với hàm liên kết logistic, khoảng tin cậy $100 \times(1-\alpha) \%$ cho $\widehat{\mu}$ là $\left(\dfrac{\exp \left(\widehat{\eta}_L\right)}{1+\exp \left(\widehat{\eta}_L\right)}, \dfrac{\exp \left(\widehat{\eta}_U\right)}{1+\exp \left(\widehat{\eta}_U\right)}\right)$
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+
+```
+
