@@ -1,0 +1,147 @@
+## 6. Kiểm định giả thuyết cho mô hình hồi quy Logistic
+
+### 6.1. Kiểm định giả thuyết cho từng hệ số
+
+$$\left\{ \begin{array}{ll}
+H_{0}: \beta_{j} = 0\\
+H_{1}: \beta_{j} \neq 0\\
+\end{array} \right.$$
+
+Tổng quát:
+
+$$\frac{\hat{\beta_{j}} - \beta_{0j}}{\sqrt{a(\Phi)*v_{j}}} \overset{d}{\longrightarrow} N(0, 1)$$
+
+Do mô hình hồi quy logistic có $a(\Phi) = 1$, nếu $H_{0}$ đúng, ta có thống kê của kiểm định là:
+$$Z = \frac{\hat{\beta_{j}}}{\sqrt{v_{j}}} \overset{d}{\longrightarrow} N(0, 1)$$
+
+Với $v_{j}$ được tính như ở phần trên.
+
+p-value = $$Pr(|Z| > |Z_{obs}|)$$
+
+### 6.2. Kiểm định giả thuyết tổng quát
+
+$$\left\{ \begin{array}{ll}
+H_{0}: \beta_{1} = \beta_{2} = ... = \beta_{p} = 0\\
+H_{1}: \exists \beta_{j} \neq 0\\
+\end{array} \right.$$
+
+$a(\Phi) = 1$ biết trước, ta có thống kê của kiểm định: \
+$$W = D(Y, \hat{\mu_{0}}) - D(Y, \hat{\mu_{1}}) \sim \chi^{2}_{p}$$
+
+Trong đó:
+
+$$D(Y, \mu) = \sum^{n}_{i=1}{d(Y_{i}, \mu_{i})}$$
+
+
+Với phân phối nhị thức:
+
+$$d(y_{i}, \hat{\mu_{i}}) = 2\{y_{i}log(\frac{y_{i}}{\hat{\mu_{i}}}) + (1-y_{i})log(\frac{1-y_{i}}{1-\hat{\mu_{i}}})\}$$
+
+\newpage
+# III. Bài toán thực tế
+## Xây dựng mô hình
+```{r}
+library(corrplot)
+library(car)
+library(caret)
+library(ggplot2)
+```
+
+Dự đoán khách hàng có rời bỏ (churn) ngân hàng hay không.
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+data <- read.csv('./Churn_Modelling.csv')
+head(data)
+```
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+# Loại bỏ những cột không có ý nghĩa trong mô hình
+# 'CreditScore', 'Geography', 'Gender', 'Age', 'Tenure', 'Balance', 'NumOfProducts','EstimatedSalary','Exited'
+data <- subset(data, select=-c(RowNumber, CustomerId, Surname))
+head(data)
+```
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+numeric_cols = c('CreditScore', 'Age', 'Balance', 'NumOfProducts', 'EstimatedSalary')
+par(mfrow=c(2, 3))
+for (i in numeric_cols){
+  boxplot(data[[i]], xlab=i)
+}
+```
+
+
+Không có dữ liệu outlier trong dữ liệu
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+colSums(is.na(data))/nrow(data)
+```
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+# loại null
+data <- subset(data, is.na(data$Age) == FALSE)
+```
+
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+# kiểm tra sự tương quan
+numeric_cols = c('CreditScore', 'Age', 'Balance', 'NumOfProducts', 'EstimatedSalary')
+corrplot(cor(data[,numeric_cols]), addCoef.col = 'black', method="color")
+```
+
+Không có sự tương quan mạnh giữa các biến
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+# Xử lý tạo biến giả cho các biến định tính
+data$Geography = relevel(as.factor(data$Geography), ref=1)
+data$Gender = relevel(as.factor(data$Gender), ref=1)
+data$Tenure = relevel(as.factor(data$Tenure), ref=1)
+data$HasCrCard = relevel(as.factor(data$HasCrCard), ref=1)
+data$IsActiveMember = relevel(as.factor(data$IsActiveMember), ref=1)
+```
+
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+logit_model <- glm(Exited ~., family="binomial", data=data)
+summary(logit_model) 
+```
+
+Nhận xét:
+Với ngưỡng anpha = 0.05, chỉ có Credit score, GenderMale, Age, Tenure7, Balance, NumOfProducts và IsActiveMember1 là có ý nghĩa trong mô hình
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+confint(logit_model)
+```
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+W_obs <- logit_model$null.deviance - logit_model$deviance
+W_obs
+```
+
+```{r include = TRUE, echo = TRUE, eval = TRUE}
+print(1 - pchisq(W_obs, df=10))
+```
+
+
+- Mô hình:
+
+$$log(\frac{\mu}{1-\mu}) = -12.51 -0.0006603*CreditScore -0.5276*GenderMale + 0.06766649*Age -0.3175*Tenure7 + 2.655*10^{-6} *Balance - 0.0961*NumOfProducts -1.075*IsActiveMember1$$
+
+Ý nghĩa hệ số coefficient:     
+- Đối với biến liên tục: Khi biến $X_i$ tăng/giảm 1 đơn vị thì $\frac{\mu}{1-\mu}$ (odds) tăng/giảm $e^{\beta_{i}}$ lần.   
+- Đối với biến rời rạc: Tỷ lệ odds của nhóm đối chiếu là cao hơn là $e^{\beta_{i}}$ nhóm tham chiếu. Hay xác suất của nhóm đối chiếu cao hơn nhóm tham chiếu là 1-odds lần.
+
+\newpage
+## Nhận xét kết quả của mô hình
+
+- Khi CreditScore tăng 1 đơn vị thì odds Exit giảm $e^{0.0006603} = 1.000661$ lần
+- Khi Age tăng 1 đơn vị thì odds Exit tăng $e^{0.06766649} = 1.070008$ lần
+- Khi Balance tăng 1 đơn vị thì odds Exit tăng $e^{2.655e-06} = 1.000003$ lần
+- Khi số lượng NumOfProducts tăng 1 đơn vị thì odds Exit giảm $e^{0.0961} = 1.100869$ lần
+- Xác suất exit của nhóm male ít hơn nhóm femal là $1-e^{0.5276} = 69.5\%$
+- Xác suất exit của nhóm Tenure7 ít hơn nhóm không phải Tenure7 là $1-e^{0.3175} = 37.37\%$
+- Xác suất exit của nhóm IsActiveMember1 ít hơn nhóm không phải IsActiveMember1 là $1-e^{1.075} = 193\%$
+
+
+
+
+
