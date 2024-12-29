@@ -1,5 +1,5 @@
 \newpage
-# 2. Cơ sở lí thuyết:
+# II. Cơ sở lí thuyết:
 Mô hình hồi quy đối với biến binomial có dạng:     
 \begin{center}
 $log(\dfrac{\mu_i}{1-\mu_i}) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \epsilon_i$    
@@ -41,7 +41,7 @@ $\hspace{4cm}c\left(y_i, \phi\right)=\log \left(C_{y_i}^{z_i m_i}\right)$
 
 <!-- ## 1.6. Xây dựng khoảng tin cậy cho hệ số của mô hình: -->
 
-## Ma trận hiệp phương sai của $\hat{\beta}$
+## 1. Ma trận hiệp phương sai của $\hat{\beta}$
 
 Ma trận hiệp phương sai của  $\hat{\beta}$ có công thức tổng quát $\widehat{\operatorname{Var}}(\widehat{\boldsymbol{\beta}})=a\left(\phi_0\right)\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1}$.   
 
@@ -49,7 +49,7 @@ Với $a(\phi)=1$, ma trận hiệp phương sai của  $\hat{\beta}$ của bi�
 
 $\widehat{\operatorname{Var}}(\widehat{\boldsymbol{\beta}})=\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1}=\left\{\boldsymbol{X}^{\mathrm{T}} \operatorname{Diag}\left[n_i \hat{\mu}_i\left(1-\hat{\mu}_i\right)\right] \boldsymbol{X}\right\}^{-1}$    
 
-## Khoảng tin cậy cho hệ số cho mô hình:
+## 2. Khoảng tin cậy cho hệ số cho mô hình:
 
 Như ta đã được học ở phần trước, khoảng tin cậy của các hệ số mô hình $\beta_j$ được xây dựng dựa trên tính chất tiệm cận phân phối chuẩn của ước lượng $\widehat{\beta}_j$, tức là:    
 
@@ -80,7 +80,7 @@ $\left(\widehat{\beta}_j-z_{(1+\alpha) / 2} \sqrt{v_j}, \widehat{\beta}_j+z_{(1+
 
 với $z_{1-\alpha / 2}$ là phân vị thứ $1-\alpha / 2$ của phân phối chuẩn $\mathcal{N}(0,1)$ và $v_j$ là thành phần đường chéo thứ $j$ của ma trận $\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1}$.    
 
-## Tính chất tiệm cận của tiên đoán $\eta$
+## 3. Tính chất tiệm cận của tiên đoán $\eta$
 
 Xét tổ hợp tuyến tính
 $\eta=\beta_0+\sum_{j=1}^p \beta_j x_j=\boldsymbol{x} \boldsymbol{\beta}$   
@@ -91,7 +91,7 @@ Ta có
 \begin{center}
 $\dfrac{\widehat{\eta}-\eta_0}{\sqrt{\operatorname{Var}(\widehat{\eta})}} \xrightarrow{d} \mathcal{N}(0,1)$    
 \end{center}
-## Ước lượng ma trận phương sai của $\hat{\eta_i}$
+## 4. Ước lượng ma trận phương sai của $\hat{\eta_i}$
 
 $\widehat{\operatorname{Var}}(\widehat{\eta})=a\left(\phi_0\right) \boldsymbol{x}\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1} \boldsymbol{x}^{\top}=\boldsymbol{x}\left(\mathbf{X}^{\top} \mathbf{W}(\widehat{\boldsymbol{\beta}}) \mathbf{X}\right)^{-1} \boldsymbol{x}^{\top}=\boldsymbol{x}\left\{\boldsymbol{X}^{\mathrm{T}} \operatorname{Diag}\left[n_i \hat{\pi}_i\left(1-\hat{\pi}_i\right)\right] \boldsymbol{X}\right\}^{-1}\boldsymbol{x}^{\top}$    
 
@@ -100,7 +100,7 @@ Với khoảng tin cậy cho $\hat{\eta_i}$ là
     $\left(\widehat{\eta}-z_{1-\alpha / 2} \sqrt{\widehat{\operatorname{Var}}(\widehat{\eta})}, \widehat{\eta}+z_{1-\alpha / 2} \sqrt{\widehat{\operatorname{Var}}(\widehat{\eta})}\right)$
 \end{center}
 
-## Khoảng tin cậy cho tiên đoán trung bình
+## 5. Khoảng tin cậy cho tiên đoán trung bình
 
 Hàm liên kết
 
